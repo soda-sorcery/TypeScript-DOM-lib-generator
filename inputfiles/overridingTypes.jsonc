@@ -404,6 +404,12 @@
                             // Blink only as of 2024-11
                             "overrideType": "boolean",
                             "nullable": false
+                        },
+                        "onerror": {
+                            "name": "onerror",
+                            "nullable": true,
+                            "overrideType": "((event: Event) => any) | ((event: UIEvent) => any)",
+                            "comment": "The error event is fired on an element when a resource failed to load, or can't be used. \n [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event)"
                         }
                     }
                 },
