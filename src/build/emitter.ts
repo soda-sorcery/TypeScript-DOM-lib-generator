@@ -31,6 +31,17 @@ const extendConflictsBaseTypes: Record<
   },
 };
 
+const extendConflictsInterfaces: Record<
+  string,
+  { overrideMap: Record<string, string> }
+> = {
+  HTMLElement: {
+    overrideMap: {
+      GlobalEventHandlers: 'Omit<GlobalEventHandlers, "onerror">',
+    },
+  },
+};
+
 // Namespaces that have been in form of interfaces for years
 // and can't be converted to namespaces without breaking type packages
 const namespacesAsInterfaces = ["console"];
@@ -1270,7 +1281,7 @@ export function emitWebIdl(
     }
 
     function processMixinName(mixinName: string) {
-      if (allInterfacesMap[mixinName].typeParameters?.length === 1) {
+      if (allInterfacesMap[mixinName]?.typeParameters?.length === 1) {
         return `${mixinName}<${i.name}>`;
       }
       return mixinName;
@@ -1293,10 +1304,26 @@ export function emitWebIdl(
       `interface ${getNameWithTypeParameters(i.typeParameters, processedIName)}`,
     );
 
-    const finalExtends = [i.extends || "Object"]
+    // if (i.implements && extendConflictsInterfaces[i.name]?.implements?.length) {
+    //   i.implements = extendConflictsInterfaces[i.name]?.implements;
+    // }
+
+    let finalExtends = [i.extends || "Object"]
       .concat(getImplementList(i.name).map(processMixinName))
+      // .concat(extendConflictsInterfaces[i.name]?.extendType ?? [])
       .filter((i) => i !== "Object")
       .map(processIName);
+
+    if (finalExtends.length && extendConflictsInterfaces[i.name]?.overrideMap) {
+      finalExtends = finalExtends.reduce((agg, item) => {
+        if (extendConflictsInterfaces[i.name]?.overrideMap[item]) {
+          agg.push(extendConflictsInterfaces[i.name]?.overrideMap[item]);
+          return agg;
+        }
+        agg.push(item);
+        return agg;
+      }, [] as string[]);
+    }
 
     if (finalExtends.length) {
       printer.print(` extends ${assertUnique(finalExtends).join(", ")}`);

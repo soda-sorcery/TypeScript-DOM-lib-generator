@@ -14026,7 +14026,7 @@ interface HTMLElementEventMap extends ElementEventMap, GlobalEventHandlersEventM
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement)
  */
-interface HTMLElement extends Element, ElementCSSInlineStyle, ElementContentEditable, GlobalEventHandlers, HTMLOrSVGElement {
+interface HTMLElement extends Element, ElementCSSInlineStyle, ElementContentEditable, Omit<GlobalEventHandlers, "onerror">, HTMLOrSVGElement {
     /**
      * The **`HTMLElement.accessKey`** property sets the keystroke which a user can press to jump to a given element.
      *
@@ -14117,6 +14117,13 @@ interface HTMLElement extends Element, ElementCSSInlineStyle, ElementContentEdit
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/offsetWidth)
      */
     readonly offsetWidth: number;
+    /**
+     * The error event is fired on an element when a resource failed to load, or can't be used.
+     *  [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event)
+     *
+     * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event)
+     */
+    onerror: (((event: Event) => any) | ((event: UIEvent) => any)) | null;
     /**
      * The **`outerText`** property of the HTMLElement interface returns the same value as HTMLElement.innerText.
      *
