@@ -31,6 +31,12 @@ const extendConflictsBaseTypes: Record<
   },
 };
 
+/**
+ * There are situations where extended types properties or methods need
+ * overridden by the implementing interface. Use this to register those interfaces
+ * the key is the implementing interface, the override map key is the interface you want to override
+ * the value overrides a type
+ */
 const extendConflictsInterfaces: Record<
   string,
   { overrideMap: Record<string, string> }
@@ -1304,19 +1310,20 @@ export function emitWebIdl(
       `interface ${getNameWithTypeParameters(i.typeParameters, processedIName)}`,
     );
 
-    // if (i.implements && extendConflictsInterfaces[i.name]?.implements?.length) {
-    //   i.implements = extendConflictsInterfaces[i.name]?.implements;
-    // }
-
+    // build the extends list for a given interface
     let finalExtends = [i.extends || "Object"]
       .concat(getImplementList(i.name).map(processMixinName))
-      // .concat(extendConflictsInterfaces[i.name]?.extendType ?? [])
       .filter((i) => i !== "Object")
       .map(processIName);
 
+    // overrides the interface's extends with any conflicts
+    // this is a separate filter to make sure we only override conflicts when
+    // they exist
     if (finalExtends.length && extendConflictsInterfaces[i.name]?.overrideMap) {
       finalExtends = finalExtends.reduce((agg, item) => {
+        // check for the conflict
         if (extendConflictsInterfaces[i.name]?.overrideMap[item]) {
+          // overwrite the conflict
           agg.push(extendConflictsInterfaces[i.name]?.overrideMap[item]);
           return agg;
         }
