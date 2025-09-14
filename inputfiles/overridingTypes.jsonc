@@ -428,6 +428,11 @@
                                     ]
                                 }
                             }
+                        },
+                        "addEventListener": {
+                            "overrideSignatures": [
+                                "addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void"
+                            ]
                         }
                     }
                 }
@@ -1235,7 +1240,7 @@
                                             "name": "quality",
                                             "overrideType": "number"
                                         }
-                                    ],
+                                    ]
                                 }
                             }
                         },
@@ -1248,7 +1253,7 @@
                                             "name": "quality",
                                             "overrideType": "number"
                                         }
-                                    ],
+                                    ]
                                 }
                             }
                         }

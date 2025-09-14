@@ -14177,6 +14177,7 @@ interface HTMLElement extends Element, ElementCSSInlineStyle, ElementContentEdit
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
      */
     togglePopover(options?: boolean): boolean;
+    addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void;
     addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;

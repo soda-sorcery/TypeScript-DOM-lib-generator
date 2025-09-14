@@ -19,6 +19,7 @@ div.onerror = (event: UIEvent) => {
     return;
   }
 };
+
 /**
  * HTMLElement.onerror works with a single event arg, Event
  */
