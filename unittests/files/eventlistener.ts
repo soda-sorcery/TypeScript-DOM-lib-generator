@@ -35,3 +35,30 @@ divElement.addEventListener("beep", (event: UIEvent) => {
     return;
   }
 });
+
+const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+svgElement.addEventListener(
+  "click",
+  (event: Event) => {
+    if (event) {
+      return;
+    }
+  },
+  false,
+);
+
+svgElement.addEventListener(
+  "click",
+  (event: Event) => {
+    if (event) {
+      return;
+    }
+  }
+);
+
+svgElement.addEventListener("beep", (event: UIEvent) => {
+  if (event) {
+    return;
+  }
+});
