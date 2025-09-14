@@ -46,6 +46,11 @@ const extendConflictsInterfaces: Record<
       GlobalEventHandlers: 'Omit<GlobalEventHandlers, "onerror">',
     },
   },
+  SVGElement: {
+    overrideMap: {
+      GlobalEventHandlers: 'Omit<GlobalEventHandlers, "onerror">',
+    },
+  },
 };
 
 // Namespaces that have been in form of interfaces for years

@@ -7,7 +7,6 @@ window.onerror = (message, src, lineno, colno, error) => {
   }
 };
 
-
 const div: HTMLElement = document.createElement("div");
 
 
@@ -29,8 +28,33 @@ div.onerror = (event: Event) => {
   }
 };
 
-
 /**
  * HTMLElement onerror is nullable
  */
 div.onerror = null;
+
+
+const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+/**
+ * SVGElement.onerror works with a single event arg, UIEvent
+ */
+svg.onerror = (event: UIEvent) => {
+  if (event) {
+    return;
+  }
+};
+
+/**
+ * SVGElement.onerror works with a single event arg, Event
+ */
+svg.onerror = (event: Event) => {
+  if (event) {
+    return;
+  }
+};
+
+/**
+ * SVGElement onerror is nullable
+ */
+svg.onerror = null;
