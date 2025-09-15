@@ -106,6 +106,33 @@
             "DeviceMotionEventRotationRate": {
                 "noInterfaceObject": true
             },
+            "DocumentOrElementEventHandlers": {
+                "name": "DocumentOrElementEventHandlers",
+                "extends": "Omit<GlobalEventHandlers, 'onerror' | 'addEventListener'>",
+                "properties": {
+                    "property": {
+                        "onerror": {
+                            "name": "onerror",
+                            "nullable": true,
+                            "overrideType": "((event: Event) => any) | ((event: UIEvent) => any)",
+                            "comment": "The error event is fired on an element when a resource failed to load, or can't be used. \n [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event)",
+                            "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event"
+                        }
+                    }
+                },
+                "methods": {
+                    "method": {
+                        "addEventListener": {
+                            "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener",
+                            "comment": "The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.",
+                            "overrideSignatures": [
+                                "addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void"
+                            ]
+                        }
+                    }
+                }
+
+            },
             "HTMLImageElement": {
                 "name": "HTMLImageElement",
                 "properties": {
