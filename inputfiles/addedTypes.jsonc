@@ -108,6 +108,7 @@
             },
             "DocumentOrElementEventHandlers": {
                 "name": "DocumentOrElementEventHandlers",
+                "exposed": "Window",
                 "extends": "Omit<GlobalEventHandlers, 'onerror' | 'addEventListener'>",
                 "properties": {
                     "property": {

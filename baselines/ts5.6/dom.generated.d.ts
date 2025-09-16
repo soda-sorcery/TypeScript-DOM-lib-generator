@@ -10731,6 +10731,27 @@ declare var DocumentFragment: {
     new(): DocumentFragment;
 };
 
+interface DocumentOrElementEventHandlers extends Omit<GlobalEventHandlers, 'onerror' | 'addEventListener'> {
+    /**
+     * The error event is fired on an element when a resource failed to load, or can't be used.
+     *  [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event)
+     *
+     * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event)
+     */
+    onerror: (((event: Event) => any) | ((event: UIEvent) => any)) | null;
+    /**
+     * The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
+     *
+     * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+     */
+    addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void;
+}
+
+declare var DocumentOrElementEventHandlers: {
+    prototype: DocumentOrElementEventHandlers;
+    new(): DocumentOrElementEventHandlers;
+};
+
 interface DocumentOrShadowRoot {
     /**
      * Returns the deepest element in the document through which or to which key events are being routed. This is, roughly speaking, the focused element in the document.
