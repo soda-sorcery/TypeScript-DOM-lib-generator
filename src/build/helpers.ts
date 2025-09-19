@@ -139,6 +139,14 @@ export function merge<T>(
         const srcProp = src[k];
         if (Array.isArray(targetProp) && Array.isArray(srcProp)) {
           mergeNamedArrays(targetProp, srcProp);
+        } else if (
+          k === "additionalExtends" &&
+          typeof targetProp === "string" &&
+          typeof srcProp === "string"
+        ) {
+          // Special handling for extends: combine both values
+          // this allows for overriding types to further extend the extend clause
+          (target as any)["extends"] = `${targetProp}, ${srcProp}` as any;
         } else {
           if (
             shallow &&
@@ -157,6 +165,12 @@ export function merge<T>(
         }
       } else if (!optional || typeof src[k] !== "object") {
         target[k] = src[k];
+      }
+    }
+    if (k === "additionalExtends" && (target as any)["extends"]) {
+      if (typeof src[k] === "string" && typeof target[k] === "string") {
+        (target as any)["extends"] =
+          `${(target as any)["extends"]}, ${src[k]}` as any;
       }
     }
   }

@@ -151,6 +151,7 @@ export interface Interface {
   mixin?: boolean;
   namespace?: boolean;
   extends?: string;
+  additionalExtends?: string;
   comment?: string;
   constants?: {
     constant: Record<string, Constant>;
