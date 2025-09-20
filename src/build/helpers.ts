@@ -139,14 +139,6 @@ export function merge<T>(
         const srcProp = src[k];
         if (Array.isArray(targetProp) && Array.isArray(srcProp)) {
           mergeNamedArrays(targetProp, srcProp);
-        } else if (
-          k === "additionalExtends" &&
-          typeof targetProp === "string" &&
-          typeof srcProp === "string"
-        ) {
-          // Special handling for extends: combine both values
-          // this allows for overriding types to further extend the extend clause
-          (target as any)["extends"] = `${targetProp}, ${srcProp}` as any;
         } else {
           if (
             shallow &&
