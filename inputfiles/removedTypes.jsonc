@@ -156,6 +156,7 @@
                 }
             },
             "HTMLElement": {
+                "implements": ["GlobalEventHandlers"],
                 "methods": {
                     "method": {
                         "showPopover": {

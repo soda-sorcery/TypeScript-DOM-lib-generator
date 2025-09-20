@@ -270,10 +270,33 @@ export function emitWebIdl(
     return { htmlResult, htmlDeprecatedResult, svgResult, mathMLResult };
   }
 
+  function extractBaseInterfaceName(extendsClause: string): string {
+    // Handle Omit<InterfaceName, 'property'> patterns
+    const utilityTypes = ["Pick", "Omit", "Partial", "Extract"];
+    const foundType = utilityTypes.reduce((agg, utilityType) => {
+      const base = extendsClause.match(
+        new RegExp(`^${utilityType}<(\\w+),\\s*'[^']+'>$`),
+      );
+      if (base?.length) {
+        return base[1];
+      }
+      return agg;
+    }, "");
+
+    if (foundType) {
+      return foundType;
+    }
+
+    // Handle generic types like Interface<T>
+    return extendsClause.replace(/<.*>$/, "");
+  }
+
   function getExtendList(iName: string): string[] {
     const i = allInterfacesMap[iName];
     if (!i || !i.extends || i.extends === "Object") return [];
-    else return getExtendList(i.extends).concat(i.extends);
+
+    const baseInterface = extractBaseInterfaceName(i.extends);
+    return getExtendList(baseInterface).concat(baseInterface);
   }
 
   function getImplementList(iName: string) {
@@ -300,7 +323,7 @@ export function emitWebIdl(
       return [];
     }
 
-    const iExtends = i.extends?.replace(/<.*>$/, "") || "";
+    const iExtends = extractBaseInterfaceName(i.extends);
     const parentWithEventHandler =
       (allInterfacesMap[iExtends] &&
         getParentEventHandler(allInterfacesMap[iExtends])) ||
@@ -1164,14 +1187,17 @@ export function emitWebIdl(
       iParent: Browser.Interface,
       optionsType: string,
     ) {
+      // Special case: DocumentOrElementEventHandlers should use ElementEventMap
+      // since it's used by Element-based interfaces like HTMLElement
+      const eventMapName =
+        i.name === "DocumentOrElementEventHandlers" ? "Element" : iParent.name;
+      const thisType =
+        i.name === "DocumentOrElementEventHandlers"
+          ? "Element"
+          : nameWithForwardedTypes(i);
+
       printer.printLine(
-        `${prefix}${addOrRemove}EventListener<K extends keyof ${
-          iParent.name
-        }EventMap>(type: K, listener: (this: ${nameWithForwardedTypes(
-          i,
-        )}, ev: ${
-          iParent.name
-        }EventMap[K]) => any, options?: boolean | ${optionsType}): void;`,
+        `${prefix}${addOrRemove}EventListener<K extends keyof ${eventMapName}EventMap>(type: K, listener: (this: ${thisType}, ev: ${eventMapName}EventMap[K]) => any, options?: boolean | ${optionsType}): void;`,
       );
     }
 
