@@ -1189,12 +1189,12 @@ export function emitWebIdl(
     ) {
       // Special case: DocumentOrElementEventHandlers should use ElementEventMap
       // since it's used by Element-based interfaces like HTMLElement
-      const eventMapName =
-        i.name === "DocumentOrElementEventHandlers" ? "Element" : iParent.name;
-      const thisType =
-        i.name === "DocumentOrElementEventHandlers"
-          ? "Element"
-          : nameWithForwardedTypes(i);
+      const eventMapName = i.overrideTypedEventMap
+        ? i?.overrideTypedEventMap?.eventMapName
+        : iParent.name;
+      const thisType = i.overrideTypedEventMap
+        ? i?.overrideTypedEventMap?.thisType
+        : nameWithForwardedTypes(i);
 
       printer.printLine(
         `${prefix}${addOrRemove}EventListener<K extends keyof ${eventMapName}EventMap>(type: K, listener: (this: ${thisType}, ev: ${eventMapName}EventMap[K]) => any, options?: boolean | ${optionsType}): void;`,

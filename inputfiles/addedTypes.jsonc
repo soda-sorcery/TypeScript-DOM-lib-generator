@@ -110,7 +110,12 @@
             "DocumentOrElementEventHandlers": {
                 "name": "DocumentOrElementEventHandlers",
                 "exposed": "Window",
+                "parent": "Element",
                 "extends": "Omit<GlobalEventHandlers, 'onerror'>",
+                "overrideTypedEventMap": {
+                    "eventMapName": "Element",
+                    "thisType": "Element"
+                },
                 "properties": {
                     "property": {
                         "onerror": {

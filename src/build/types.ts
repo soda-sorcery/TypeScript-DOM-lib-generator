@@ -152,6 +152,10 @@ export interface Interface {
   namespace?: boolean;
   extends?: string;
   additionalExtends?: string;
+  overrideTypedEventMap?: {
+    eventMapName: string;
+    thisType: string;
+  };
   comment?: string;
   constants?: {
     constant: Record<string, Constant>;
