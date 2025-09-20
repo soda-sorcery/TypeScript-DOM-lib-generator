@@ -10731,6 +10731,12 @@ interface DocumentOrElementEventHandlers extends Omit<GlobalEventHandlers, 'oner
      * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event)
      */
     onerror: (((event: Event) => any) | ((event: UIEvent) => any) | null) | null;
+    /**
+     * The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
+     *
+     * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+     */
+    addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void;
     addEventListener<K extends keyof ElementEventMap>(type: K, listener: (this: Element, ev: ElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof ElementEventMap>(type: K, listener: (this: Element, ev: ElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
@@ -11152,6 +11158,12 @@ interface Element extends Node, ARIAMixin, Animatable, ChildNode, NonDocumentTyp
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/tagName)
      */
     readonly tagName: string;
+    /**
+     * The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
+     *
+     * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+     */
+    addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void;
     /**
      * The **`Element.attachShadow()`** method attaches a shadow DOM tree to the specified element and returns a reference to its ShadowRoot.
      *

@@ -106,6 +106,7 @@
             "DeviceMotionEventRotationRate": {
                 "noInterfaceObject": true
             },
+
             "DocumentOrElementEventHandlers": {
                 "name": "DocumentOrElementEventHandlers",
                 "exposed": "Window",
@@ -118,6 +119,18 @@
                             "overrideType": "((event: Event) => any) | ((event: UIEvent) => any) | null",
                             "comment": "The error event is fired on an element when a resource failed to load, or can't be used. \n [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event)",
                             "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/error_event"
+                        }
+                    }
+                },
+                "methods": {
+                    "method": {
+                        "addEventListener": {
+                            "name": "addEventListener",
+                            "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener",
+                            "comment": "The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.",
+                            "overrideSignatures": [
+                                "addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void"
+                            ]
                         }
                     }
                 }
@@ -305,6 +318,7 @@
                 },
                 "noInterfaceObject": true
             },
+
             "Element": {
                 "name": "Element",
                 "methods": {
@@ -335,6 +349,14 @@
                                     "overrideType": "E"
                                 }
                             }
+                        },
+                        "addEventListener": {
+                            "name": "addEventListener",
+                            "mdnUrl": "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener",
+                            "comment": "The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.",
+                            "overrideSignatures": [
+                                "addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void"
+                            ]
                         },
                         "insertAdjacentElement": {
                             "signature": {

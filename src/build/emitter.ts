@@ -1050,7 +1050,7 @@ export function emitWebIdl(
       method.overrideSignatures!.forEach((s) => printLine(`${prefix}${s};`));
     } else if (method.signature) {
       method.additionalSignatures?.forEach((s) => printLine(`${prefix}${s};`));
-      method.signature.forEach((sig) =>
+      method.signature?.forEach((sig) =>
         emitSignature(sig, prefix, name, printLine, shouldResolvePromise),
       );
     }
