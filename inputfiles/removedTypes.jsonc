@@ -207,6 +207,9 @@
             "RTCEncodedVideoFrame": {
                 "constructor": null // Blink experimental only as of 2024-05
             },
+            "SVGElement": {
+                "implements": ["GlobalEventHandlers"]
+            },
             "SVGFEGaussianBlurElement": {
                 "constants": {
                     "constant": {
