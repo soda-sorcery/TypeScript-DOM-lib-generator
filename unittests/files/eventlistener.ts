@@ -27,9 +27,9 @@ divElement.addEventListener("click", (event: Event) => {
   }
 });
 
-divElement.addEventListener("beep", (event: UIEvent) => {
-  if (event) {
-    return;
-  }
-});
+// divElement.addEventListener("beep", (event: UIEvent) => {
+//   if (event) {
+//     return;
+//   }
+// });
 

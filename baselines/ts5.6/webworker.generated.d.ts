@@ -13295,7 +13295,7 @@ type Int32List = Int32Array | GLint[];
 type MessageEventSource = MessagePort | ServiceWorker;
 type NamedCurve = string;
 type OffscreenRenderingContext = OffscreenCanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
-type OnErrorEventHandler = OnErrorEventHandlerNonNull | null;
+type OnErrorEventHandler = (((event: Event) => any) | ((event: UIEvent) => any) | OnErrorEventHandlerNonNull) | null;
 type PerformanceEntryList = PerformanceEntry[];
 type PushMessageDataInit = BufferSource | string;
 type ReadableStreamController<T> = ReadableStreamDefaultController<T> | ReadableByteStreamController;

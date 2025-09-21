@@ -1187,8 +1187,8 @@ export function emitWebIdl(
       iParent: Browser.Interface,
       optionsType: string,
     ) {
-      // Special case: DocumentOrElementEventHandlers should use ElementEventMap
-      // since it's used by Element-based interfaces like HTMLElement
+      // In certain cases, we want to override the eventMapName due
+      // to specific coupling or overrides.
       const eventMapName = i.overrideTypedEventMap
         ? i?.overrideTypedEventMap?.eventMapName
         : iParent.name;

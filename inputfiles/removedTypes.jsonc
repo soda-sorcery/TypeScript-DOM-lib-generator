@@ -123,6 +123,10 @@
             }
         }
     },
+    "mixins": {
+        "mixin": {
+        }
+    },
     "interfaces": {
         "interface": {
             "Clipboard": {
@@ -156,7 +160,6 @@
                 }
             },
             "HTMLElement": {
-                "implements": ["GlobalEventHandlers"],
                 "methods": {
                     "method": {
                         "showPopover": {
