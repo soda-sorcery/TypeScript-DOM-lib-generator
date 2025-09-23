@@ -4140,6 +4140,7 @@
                     }
                 ]
             },
+
             {
                 "name": "ReadableStreamReader",
                 "typeParameters": [

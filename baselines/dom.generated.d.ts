@@ -4411,6 +4411,15 @@ declare var BaseAudioContext: {
     new(): BaseAudioContext;
 };
 
+interface BaseGlobalOnErrorEventHandler {
+    (event: Event): any;
+}
+
+declare var BaseGlobalOnErrorEventHandler: {
+    prototype: BaseGlobalOnErrorEventHandler;
+    new(): BaseGlobalOnErrorEventHandler;
+};
+
 /**
  * The **`BeforeUnloadEvent`** interface represents the event object for the Window/beforeunload_event event, which is fired when the current window, contained document, and associated resources are about to be unloaded.
  *
@@ -10731,6 +10740,15 @@ declare var DocumentFragment: {
     new(): DocumentFragment;
 };
 
+interface DocumentOnErrorEventHandler {
+    (event: UIEvent): any;
+}
+
+declare var DocumentOnErrorEventHandler: {
+    prototype: DocumentOnErrorEventHandler;
+    new(): DocumentOnErrorEventHandler;
+};
+
 interface DocumentOrElementEventHandlers extends Omit<GlobalEventHandlers, 'onerror'> {
     /**
      * The error event is fired on an element when a resource failed to load, or can't be used.
@@ -13161,7 +13179,7 @@ interface GlobalEventHandlers {
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/ended_event) */
     onended: ((this: GlobalEventHandlers, ev: Event) => any) | null;
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/error_event) */
-    onerror: OnErrorEventHandler;
+    onerror: Dandalf;
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/focus_event) */
     onfocus: ((this: GlobalEventHandlers, ev: FocusEvent) => any) | null;
     /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/formdata_event) */
@@ -39305,7 +39323,7 @@ declare var onemptied: ((this: Window, ev: Event) => any) | null;
 /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLMediaElement/ended_event) */
 declare var onended: ((this: Window, ev: Event) => any) | null;
 /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/error_event) */
-declare var onerror: OnErrorEventHandler;
+declare var onerror: Dandalf;
 /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/Element/focus_event) */
 declare var onfocus: ((this: Window, ev: FocusEvent) => any) | null;
 /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/formdata_event) */
@@ -39582,6 +39600,7 @@ type ConstrainDouble = number | ConstrainDoubleRange;
 type ConstrainULong = number | ConstrainULongRange;
 type CookieList = CookieListItem[];
 type DOMHighResTimeStamp = number;
+type Dandalf = (((event: Event) => any) | ((event: UIEvent) => any) | OnErrorEventHandlerNonNull) | null;
 type EpochTimeStamp = number;
 type EventListenerOrEventListenerObject = EventListener | EventListenerObject;
 type FileSystemWriteChunkType = BufferSource | Blob | string | WriteParams;
@@ -39615,7 +39634,7 @@ type MutationRecordType = "attributes" | "characterData" | "childList";
 type NamedCurve = string;
 type OffscreenRenderingContext = OffscreenCanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
 type OnBeforeUnloadEventHandler = OnBeforeUnloadEventHandlerNonNull | null;
-type OnErrorEventHandler = (((event: Event) => any) | ((event: UIEvent) => any) | OnErrorEventHandlerNonNull) | null;
+type OnErrorEventHandler = OnErrorEventHandlerNonNull | null;
 type OptionalPostfixToken<T extends string> = ` ${T}` | "";
 type OptionalPrefixToken<T extends string> = `${T} ` | "";
 type PerformanceEntryList = PerformanceEntry[];

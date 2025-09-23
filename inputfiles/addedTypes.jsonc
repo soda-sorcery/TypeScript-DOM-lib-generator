@@ -106,6 +106,38 @@
             "DeviceMotionEventRotationRate": {
                 "noInterfaceObject": true
             },
+            "BaseGlobalOnErrorEventHandler": {
+                "name": "BaseGlobalOnErrorEventHandler",
+                "exposed": "Window",
+                "methods": {
+                    "method": {
+                        // This is a hack to add a call signature, but I think it's reasonable
+                        // as it means we don't have to add a call signatures section to the
+                        // emitter for this one case.
+                        "callable": {
+                            "overrideSignatures": [
+                                "(event: Event): any"
+                            ]
+                        }
+                    }
+                }
+            },
+            "DocumentOnErrorEventHandler": {
+                "name": "DocumentOnErrorEventHandler",
+                "exposed": "Window",
+                "methods": {
+                    "method": {
+                        // This is a hack to add a call signature, but I think it's reasonable
+                        // as it means we don't have to add a call signatures section to the
+                        // emitter for this one case.
+                        "callable": {
+                            "overrideSignatures": [
+                                "(event: UIEvent): any"
+                            ]
+                        }
+                    }
+                }
+            },
             "DocumentOrElementEventHandlers": {
                 "name": "DocumentOrElementEventHandlers",
                 "exposed": "Window",
@@ -1237,7 +1269,12 @@
                 // Full spec at https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill.
                 "name": "AutoFill",
                 "overrideType": "AutoFillBase | `${OptionalPrefixToken<AutoFillSection>}${OptionalPrefixToken<AutoFillAddressKind>}${AutoFillField}${OptionalPostfixToken<AutoFillCredentialField>}`"
-            }
+            },
+            {
+                "name": "Dandalf",
+                "nullable": true,
+                "overrideType": "((event: Event) => any) | ((event: UIEvent) => any) | OnErrorEventHandlerNonNull",
+
         ]
     }
 }
