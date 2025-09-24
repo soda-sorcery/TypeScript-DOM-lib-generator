@@ -14170,6 +14170,12 @@ interface HTMLElement extends Element, ElementCSSInlineStyle, ElementContentEdit
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/togglePopover)
      */
     togglePopover(options?: boolean): boolean;
+    /**
+     * The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
+     *
+     * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+     */
+    addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void;
     addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
@@ -27379,6 +27385,12 @@ interface SVGElement extends Element, ElementCSSInlineStyle, GlobalEventHandlers
      * [MDN Reference](https://developer.mozilla.org/docs/Web/API/SVGElement/viewportElement)
      */
     readonly viewportElement: SVGElement | null;
+    /**
+     * The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
+     *
+     * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+     */
+    addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void;
     addEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGElement, ev: SVGElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGElement, ev: SVGElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
@@ -29741,6 +29753,12 @@ interface SVGSVGElement extends SVGGraphicsElement, SVGFitToViewBox, WindowEvent
     unsuspendRedraw(suspendHandleID: number): void;
     /** @deprecated */
     unsuspendRedrawAll(): void;
+    /**
+     * The addEventListener() method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
+     *
+     * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+     */
+    addEventListener(type: string, listener: ((event: Event) => void) | ((event: UIEvent) => void)): void;
     addEventListener<K extends keyof SVGSVGElementEventMap>(type: K, listener: (this: SVGSVGElement, ev: SVGSVGElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof SVGSVGElementEventMap>(type: K, listener: (this: SVGSVGElement, ev: SVGSVGElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
